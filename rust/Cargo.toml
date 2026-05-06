@@ -1,0 +1,52 @@
+[package]
+name = "r9s"
+version = "0.1.0"
+edition = "2024"
+description = "A Kubernetes TUI manager, written in Rust"
+license = "Apache-2.0"
+
+[dependencies]
+# TUI framework
+ratatui = "0.29"
+crossterm = { version = "0.28", features = ["event-stream"] }
+
+# Kubernetes client
+kube = { version = "0.99", features = ["runtime", "client", "derive", "ws"] }
+k8s-openapi = { version = "0.24", features = ["latest"] }
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+tokio-stream = "0.1"
+futures = "0.3"
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+
+# CLI argument parsing
+clap = { version = "4", features = ["derive", "env"] }
+
+# Error handling
+anyhow = "1"
+thiserror = "2"
+
+# Logging / tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tracing-appender = "0.2"
+
+# HTTP (used by kube under the hood, also useful for health checks)
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+
+# Config / filesystem paths
+dirs = "6"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Regex for filtering
+regex = "1"
+
+# Colored output helpers
+unicode-width = "0.2"
